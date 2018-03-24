@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Buffalo - Myvolumio</title>
+    <title>Buffalo - MyVol</title>
     <%= stylesheetTag("application.css") %>
     <meta name="csrf-param" content="authenticity_token" />
     <meta name="csrf-token" content="<%= authenticity_token %>" />
@@ -12,7 +12,9 @@
 
     <div class="container">
       <%= partial("flash.html") %>
+      <%= partial("header.html") %>
       <%= yield %>
+      <%= partial("footer.html") %>
     </div>
 
     <%= javascriptTag("application.js") %>

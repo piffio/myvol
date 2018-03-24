@@ -3,7 +3,7 @@ package main
 import (
 	"log"
 
-	"github.com/piffio/myvolumio/actions"
+	"github.com/piffio/myvol/actions"
 )
 
 func main() {

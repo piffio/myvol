@@ -1,7 +1,7 @@
 language: go
 
 go:
-  - 1.8.x
+  - 1.9.x
 
 env:
   - GO_ENV=test
@@ -10,10 +10,10 @@ services:
   - postgresql
 
 before_script:
-  - psql -c 'create database myvolumio_test;' -U postgres
+  - psql -c 'create database myvol_test;' -U postgres
   - mkdir -p $TRAVIS_BUILD_DIR/public/assets
 
-go_import_path: github.com/piffio/myvolumio
+go_import_path: github.com/piffio/myvol
 
 install:
   - go get github.com/gobuffalo/buffalo/buffalo

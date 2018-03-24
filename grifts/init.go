@@ -2,7 +2,7 @@ package grifts
 
 import (
 	"github.com/gobuffalo/buffalo"
-	"github.com/piffio/myvolumio/actions"
+	"github.com/piffio/myvol/actions"
 )
 
 func init() {
