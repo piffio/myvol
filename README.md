@@ -1,34 +1,29 @@
-# Welcome to Buffalo!
+# Welcome to MyVol!
 
-Thank you for choosing Buffalo for your web development needs.
+This is a WIP project that is mainly aimed at learning to build Web applications using [http://gobuffalo.io](Buffalo).
 
 ## Database Setup
 
-It looks like you chose to set up your application using a postgres database! Fantastic!
+In order to run a local instance, you will need a PostgreSQL db up and running.
+The simplest way to achieve this is via one of the offcial Docker images:
 
-The first thing you need to do is open up the "database.yml" file and edit it to use the correct usernames, passwords, hosts, etc... that are appropriate for your environment.
+    $ docker run --rm -it --publish 0.0.0.0:5432:5432 --name pg -e POSTGRES_PASSWORD=postgres postgres:9-alpine
 
-You will also need to make sure that **you** start/install the database of your choice. Buffalo **won't** install and start postgres for you.
+Caveat: the container will be destroyed when you stop it.
 
-### Create Your Databases
+### Initialise the local enviroment
 
-Ok, so you've edited the "database.yml" file and started postgres, now Buffalo can create the databases in that file for you:
+Once the DB is up and running, run the following command that will take care of setting up the whole enviroment
 
-	$ buffalo db create -a
+	$ buffalo setup
+
+You will need to run this command only once
+
 ## Starting the Application
 
-Buffalo ships with a command that will watch your application and automatically rebuild the Go binary and any assets for you. To do that run the "buffalo dev" command:
+To run the application, use the standard buffalo way:
 
 	$ buffalo dev
 
-If you point your browser to [http://127.0.0.1:3000](http://127.0.0.1:3000) you should see a "Welcome to Buffalo!" page.
+The application will be available at [http://127.0.0.1:3000](http://127.0.0.1:3000).
 
-**Congratulations!** You now have your Buffalo application up and running.
-
-## What Next?
-
-We recommend you heading over to [http://gobuffalo.io](http://gobuffalo.io) and reviewing all of the great documentation there.
-
-Good luck!
-
-[Powered by Buffalo](http://gobuffalo.io)
