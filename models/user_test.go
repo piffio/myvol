@@ -17,7 +17,7 @@ func (as *ModelSuite) Test_User_Create() {
 		ProviderID: "123456abc",
 	}
 
-	err = as.DB.Save(u)
+	err = as.DB.Create(u)
 	as.NoError(err)
 
 	count, err = as.DB.Count("users")
