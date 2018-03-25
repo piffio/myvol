@@ -2,6 +2,10 @@ language: go
 
 go:
   - 1.9.x
+  - 1.10.x
+
+os:
+  - linux
 
 env:
   - GO_ENV=test
@@ -10,8 +14,10 @@ services:
   - postgresql
 
 before_script:
-  - psql -c 'create database myvol_test;' -U postgres
+  - buffalo db create -a
+  - buffalo db migrate
   - mkdir -p $TRAVIS_BUILD_DIR/public/assets
+  - go get github.com/gobuffalo/suite
 
 go_import_path: github.com/piffio/myvol
 
@@ -20,3 +26,7 @@ install:
   - go get $(go list ./... | grep -v /vendor/)
 
 script: buffalo test
+
+addons:
+  code_climate:
+    repo_token: 7e08fc886d1d51e316a6c517b897e1d100aa1ac8d30207acdd9fb222bc23112b
