@@ -2,6 +2,8 @@
 
 This is a WIP project that is mainly aimed at learning to build Web applications using [http://gobuffalo.io](Buffalo).
 
+[![Build Status](https://travis-ci.org/piffio/myvol.svg?branch=master)](https://travis-ci.org/piffio/myvol)
+
 ## Database Setup
 
 In order to run a local instance, you will need a PostgreSQL db up and running.
