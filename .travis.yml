@@ -26,3 +26,7 @@ install:
   - go get $(go list ./... | grep -v /vendor/)
 
 script: buffalo test
+
+addons:
+  code_climate:
+    repo_token: 7e08fc886d1d51e316a6c517b897e1d100aa1ac8d30207acdd9fb222bc23112b
