@@ -1,14 +1,16 @@
 language: go
 
 go:
-  - 1.9.x
   - 1.10.x
 
 os:
   - linux
 
 env:
+  matrix:
   - GO_ENV=test
+  global:
+    secure: Yh9FXDAUlZPCoFUFyZvzCXzVFF0kx72QbOlkw+ez+eAa3ddhBvH0Tw6nj0hfaV079OdaagrqucmT39wFi1CzMa4zMnMLyBWvp7jB2FbN47znbvT7PGe0p05Me0Jks8kZG0rmHxlvGakvs4sqOHjPQ/UHB02Z/A2d2IY0NxWKtXXxnrzBVbV6IJ8EOSO/zPxTMdOn4E/cpGw2I6FByBBTpzLdkt/KT3Alax3V+Y295h5R1ymEBgiljbCW9zS5khokh+JkZ+pT2CvtKUy82vn/owMyNvemOiaESJk50vsOpiyzOnFy+bLUGdLe+BAUjbIVRdnhLD/Cp9gPKvyCw+jxnsjJEGXQLhoIk+4F25eJvvBTgvT3VM5xrz4Tj7MRb9VZSvw6u/QI849FW/Q7QxOxGfrtExPZ7Y2UdDHhI5h/o0oCLBNjmPMLDF6Y1kSyMWKeSeLMHJ1QljNhGDOYqh6Fe4REZTXhNR2xE8Auc7D0GuWpDqhE5J2GzmU4IglhyteFlWY7Bdmsk7KdUa5+lqRnMfmFvsza2yx5bmNLvXgOujBkGvaSP/BaRWc7XbX+WhWH4HIOSQ45YB84PK+v9o85ZHcD1TuUD/X0ITAKV+5hpBS3/Z1nx0t3SC2QVvGG16Y5A0eeUmWGQ5+p2Xpf92Srhg3XLsAI+9tnrQrjMu+SBLY=
 
 services:
   - postgresql
@@ -18,6 +20,9 @@ before_script:
   - buffalo db migrate
   - mkdir -p $TRAVIS_BUILD_DIR/public/assets
   - go get github.com/gobuffalo/suite
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+  - ./cc-test-reporter before-build
 
 go_import_path: github.com/piffio/myvol
 
@@ -25,8 +30,7 @@ install:
   - go get github.com/gobuffalo/buffalo/buffalo
   - go get $(go list ./... | grep -v /vendor/)
 
-script: buffalo test
+script: buffalo test -coverprofile=c.out ./...
 
-addons:
-  code_climate:
-    repo_token: 7e08fc886d1d51e316a6c517b897e1d100aa1ac8d30207acdd9fb222bc23112b
+after_script:
+  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
