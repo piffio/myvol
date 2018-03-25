@@ -1,7 +1,11 @@
 language: go
 
 go:
-  - 1.8
+  - 1.9.x
+  - 1.10.x
+
+os:
+  - linux
 
 env:
   - GO_ENV=test
@@ -10,8 +14,10 @@ services:
   - postgresql
 
 before_script:
-  - psql -c 'create database myvol_test;' -U postgres
+  - buffalo db create -a
+  - buffalo db migrate
   - mkdir -p $TRAVIS_BUILD_DIR/public/assets
+  - go get github.com/gobuffalo/suite
 
 go_import_path: github.com/piffio/myvol
 
