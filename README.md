@@ -4,6 +4,8 @@ This is a WIP project that is mainly aimed at learning to build Web applications
 
 [![Build Status](https://travis-ci.org/piffio/myvol.svg?branch=master)](https://travis-ci.org/piffio/myvol)
 [![Maintainability](https://api.codeclimate.com/v1/badges/9baeaee7897432fa5303/maintainability)](https://codeclimate.com/github/piffio/myvol/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/9baeaee7897432fa5303/test_coverage)](https://codeclimate.com/github/piffio/myvol/test_coverage)
+[![Go Report Card](https://goreportcard.com/badge/github.com/piffio/myvol)](https://goreportcard.com/report/github.com/piffio/myvol)
 
 ## Database Setup
 
