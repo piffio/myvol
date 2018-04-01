@@ -34,6 +34,23 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
+-- Name: devices; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.devices (
+    id character varying(255) NOT NULL,
+    model character varying(255) NOT NULL,
+    description character varying(255) NOT NULL,
+    user_id uuid NOT NULL,
+    serial character varying(255) NOT NULL,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+ALTER TABLE public.devices OWNER TO postgres;
+
+--
 -- Name: schema_migration; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -62,6 +79,14 @@ CREATE TABLE public.users (
 ALTER TABLE public.users OWNER TO postgres;
 
 --
+-- Name: devices devices_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.devices
+    ADD CONSTRAINT devices_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: users users_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -70,10 +95,25 @@ ALTER TABLE ONLY public.users
 
 
 --
+-- Name: devices_user_id_idx; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX devices_user_id_idx ON public.devices USING btree (user_id);
+
+
+--
 -- Name: version_idx; Type: INDEX; Schema: public; Owner: postgres
 --
 
 CREATE UNIQUE INDEX version_idx ON public.schema_migration USING btree (version);
+
+
+--
+-- Name: devices devices_user_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.devices
+    ADD CONSTRAINT devices_user_id_fkey FOREIGN KEY (user_id) REFERENCES public.users(id) ON DELETE CASCADE;
 
 
 --
