@@ -5,7 +5,7 @@ import (
 	"github.com/piffio/myvol/models"
 )
 
-func (as *ModelSuite) Test_Device_Create() {
+func createTestUser(as *ModelSuite) *models.User {
 	u := &models.User{
 		Email:      nulls.NewString("sergio@example.com"),
 		Name:       "Sergio Visinoni",
@@ -15,6 +15,12 @@ func (as *ModelSuite) Test_Device_Create() {
 
 	err := as.DB.Create(u)
 	as.NoError(err)
+
+	return u
+}
+
+func (as *ModelSuite) Test_Device_Create() {
+	u := createTestUser(as)
 
 	count, err := as.DB.Count("devices")
 	as.NoError(err)
