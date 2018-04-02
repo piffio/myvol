@@ -68,6 +68,7 @@ func App() *buffalo.App {
 		auth.DELETE("", AuthDestroy)
 		auth.Middleware.Skip(Authorize, bah, AuthCallback)
 		app.GET("/profile", ProfileShow)
+		app.Resource("/devices", DevicesResource{})
 		app.ServeFiles("/", assetsBox) // serve files from the public directory
 	}
 

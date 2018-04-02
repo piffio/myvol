@@ -1,0 +1,2 @@
+drop_index("devices", "user_id", {})
+drop_table("devices")
